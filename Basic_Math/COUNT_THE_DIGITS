@@ -1,0 +1,15 @@
+public class count_the_digits{
+    public static int count(int n ){
+        int count =1;
+        while(n >9){
+            n=n/10;
+            count++;
+        }
+        return count;
+    }
+
+    public static void main(String[] args) {
+        int n =123078;
+        System.out.println(count(n));
+    }
+}
