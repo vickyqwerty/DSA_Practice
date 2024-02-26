@@ -1,0 +1,36 @@
+public class basic_recursion {
+    static int count =0;
+    static void print(){
+        if(count==3)return;
+        System.out.println(count);
+        count++;
+        print();
+    }
+    //print 1 to n
+    static void print1toN(int i,int n){
+        if(i>n) return;
+        System.out.println(i+" ");
+        print1toN(i+1,n);
+    }
+    //print n to 1
+    static  void printN_to_1(int i , int j ){
+        if(i<1)return;
+        System.out.println(i+" ");
+        printN_to_1(i-1,j);
+    }
+    //print name n times
+    static void printname(int i,int n){
+
+        if(i>n)return;
+        System.out.println("vignesh");
+        printname(i+1,n);
+    }
+
+    public static void main(String[] args) {
+        int i =5;
+        print();
+        print1toN(1,i);
+        printN_to_1(i,i);
+        printname(1,i);
+    }
+}
