@@ -1,0 +1,33 @@
+//here you are checking a condition multiple times so try to remember to return false in the condtion and return ture default
+
+public class Checking_sorted_array {
+    //Optimal Approach
+    static boolean isSorted(int[] arr){
+        if(arr.length==1){
+            return true;
+        }
+        for (int i =1;i< arr.length;i++){
+            if(arr[i]<arr[i-1]){
+                return false;
+            }
+        }
+        return true;
+
+    }
+    //Bruteforce approach
+    static boolean isSort(int[] arr){
+        for (int i =0;i< arr.length;i++){
+            for(int j=i+1;j< arr.length;j++){
+                if(arr[i]>=arr[j]){
+                    return false;
+                }
+            }
+        }
+        return true;
+    }
+
+    public static void main(String[] args) {
+        int[] arr = {1,2,3,4};
+        System.out.println(isSorted(arr));
+    }
+}
