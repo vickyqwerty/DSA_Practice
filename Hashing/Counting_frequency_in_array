@@ -1,0 +1,24 @@
+import java.util.*;
+public class Counting_frequency_in_array {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int n = sc.nextInt();
+        int[] arr= new int[n];
+        for(int i=0;i<n;i++){
+            arr[i]=sc.nextInt();
+        }
+        HashMap<Integer,Integer> mp= new HashMap<>();
+        for(int i=0;i<n;i++){
+            int key = arr[i];
+            int frequency=0;
+            if(mp.containsKey(key)){
+                frequency=mp.get(key);
+            }
+            frequency++;
+            mp.put(key,frequency);
+        }
+        for(Map.Entry<Integer,Integer> p: mp.entrySet() ){
+            System.out.println(p.getKey()+"->"+p.getValue());
+        }
+    }
+}
