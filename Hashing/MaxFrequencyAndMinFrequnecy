@@ -1,0 +1,40 @@
+import java.util.*;
+public class MaxFrequencyAndMinFrequency {
+    static  void frequency(int [] arr,int n ){
+        HashMap<Integer,Integer> mp = new HashMap<>();
+        for (int i =0;i<n;i++){
+            if(mp.containsKey(arr[i])){
+                mp.put(arr[i],mp.get(arr[i])+1);//get retrieves the value present in that key
+            }
+            else{
+                mp.put(arr[i],1);
+            }
+        }
+        int maxfrequency =0;// take 0 because the min frequency can be 0 and we will compare with the min possible frequency
+        int minfrequency =n; // n becouse the max frequency can be the size of the array, we will compare with the max size
+        int maxElement =0;
+        int minElement =0;
+        for (Map.Entry<Integer,Integer> x : mp.entrySet()){
+            int element = x.getKey();
+            int count = x.getValue();
+            if(count>maxfrequency){
+                maxElement=element;//correspond key takes the max element variable
+                maxfrequency =count;
+            }
+            if(count<minfrequency){
+                minElement=element;
+                minfrequency=count;
+            }
+
+        }
+        System.out.println("Minimum frequency element is" + minElement);
+        System.out.println("Maximum frequency element is" + maxElement);
+
+    }
+
+    public static void main(String[] args) {
+        int[] array = {1,2,3,4,1,2,3,1,2,1};
+        int n = array.length;
+        frequency(array,n);
+    }
+}
