@@ -1,0 +1,53 @@
+public class MaxEquilibriumSum {
+
+    //BRUTEFORCE APPROACH
+
+    static int findMax(int[] arr){
+        int ans = Integer.MIN_VALUE;
+        int n = arr.length;
+        for(int i =0;i<n;i++){
+            int prefix = arr[i];
+            for(int j=0;j<i;j++){
+                prefix +=arr[j];
+            }
+            int suffix = arr[i];
+            for(int j=n-1;j>i;j--){
+                suffix +=arr[j];
+            }
+            if(prefix==suffix){
+                ans=Math.max(ans,prefix);
+            }
+        }
+        return ans;
+    }
+
+    //OPTIMAL APPROACH
+
+    static int findEquiSum(int[] arr){
+        int n = arr.length;
+        int ans = Integer.MIN_VALUE;
+        int[] prefix = new int[n];
+        int[] suffix = new int[n];
+        prefix[0] = arr[0];
+        for(int i=1 ;i<n;i++){
+            prefix[i]=prefix[i-1]+arr[i];
+        }
+        suffix[n-1] = arr[n-1];
+        if(prefix[n-1] == suffix[n-1]){
+            ans= Math.max(ans,prefix[n-1]);
+        }
+        for(int i =n-2;i>=0;i--){
+            suffix[i] = suffix[i+1]+arr[i];
+            if(prefix[i] == suffix[i]){
+                ans=Math.max(ans,prefix[i]);
+            }
+        }
+        return ans;
+    }
+
+    public static void main(String[] args) {
+        int[] arr= {1,2,3,0,3,2,1};
+        System.out.println(findMax(arr));
+        System.out.println(findEquiSum(arr));
+    }
+}
