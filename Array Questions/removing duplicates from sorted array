@@ -1,0 +1,41 @@
+// simple first motham enni unique elements unnayo kanukkovaali avi first place cheyyali order lo
+//migilinavi last place cheyyali last lo enni unique elements unnayo return cheyyali
+
+// approach:
+// ikkada hashing approach use cheyyachu but adhi brute force approach
+// optimal approach is 2 pointer approach first pointer i and second pointer j
+//i pointer lo unna value j pointer lo unna value ki not equal aithe i crement chestham and j value
+// ni ith index loki change chestham j ni increment cheyadaniki oka for loop vadatham last ki i+1
+//elements vastayi o based indexing kabatti
+
+import java.sql.SQLOutput;
+
+public class removing_duplicates_from_sorted_array {
+    static int removeDuplicates(int[] arr){
+        int i =0;
+        for(int j=1;j< arr.length;j++){
+            if(arr[i] !=arr[j]){
+                i++;
+                arr[i] = arr[j];
+            }
+        }
+        return i+1;
+    }
+    static  void printarray(int []  arr){
+        int n= arr.length;
+        for(int i =0;i<n;i++){
+            System.out.print(arr[i]+" ");
+        }
+        System.out.println();
+    }
+
+    public static void main(String[] args) {
+        int[] arr= {1,1,2,2,4,4,5};
+        printarray(arr);
+        int k =removeDuplicates(arr);
+        for(int i =0;i<k;i++){
+            System.out.print(arr[i]+ " ");
+        }
+    }
+
+}
