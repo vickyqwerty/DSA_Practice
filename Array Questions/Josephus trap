@@ -1,0 +1,16 @@
+public class josephuTrap {
+    static int josephus(int i, int j){
+        if(i==1){
+            return 1;
+        }
+        else {
+            return (josephus(i-1,j)+ j-1) % i+1;
+        }
+    }
+
+    public static void main(String[] args) {
+        int i =14;
+        int j =2;
+        System.out.println(josephus(i,j));
+    }
+}
