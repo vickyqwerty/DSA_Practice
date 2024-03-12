@@ -1,0 +1,48 @@
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
+
+public class FindUnionInArray {
+
+    //we use collections to solve this problem
+    //Create a method that returns arrayList
+    static ArrayList<Integer> union(int[] a, int[] b){
+        HashMap<Integer,Integer> mp = new HashMap<>(); // to store the distinctive elements
+        ArrayList<Integer> list = new ArrayList<>(); // for returning the union arraylist
+        int n = a.length;
+        int m =b.length;
+        int count = 0;
+        // add the distinctive elements in array 1 to map
+        for(int i =0;i<n;i++){
+            if(mp.containsKey(a[i])){
+                count = mp.get(a[i]) +1;
+                mp.put(a[i],count);
+            }else{
+                mp.put(a[i],1);
+            }
+        }
+        // add the distinctive elements in array 2 to map
+        for(int i =0;i<m;i++){
+            if(mp.containsKey(b[i])){
+                count = mp.get(b[i]) +1;
+                mp.put(b[i],count);
+            }else{
+                mp.put(b[i],1);
+            }
+        }
+        // ierate over map to and key the  keys
+        for(int i: mp.keySet()){
+            list.add(i); // add the keys to the arraylist (keys are basically the elememts)
+        }
+        return list;
+    }
+    public static void main(String[] args){
+        int [] a={1,2,3,4};
+        int[] b={3,5,4,6};
+        ArrayList<Integer> list=union(a,b);
+        // always remember to use for each loop to print collections
+        for(int i:list){
+            System.out.print(i+" ");
+        }
+    }
+}
