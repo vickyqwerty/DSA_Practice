@@ -1,0 +1,48 @@
+import java.util.HashMap;
+import java.util.Map;
+
+public class numberThatAppearsOnceWhileRestAppearsTwice {
+
+    //one approach is to use HASHMAP
+    //Time complexity will be O(M)+O(N*logM)
+    static int OnceAppeared(int[] arr){
+        HashMap<Integer,Integer> mp = new HashMap<>();
+
+        int n = arr.length;
+        for(int i =0;i<n;i++){
+            if(mp.containsKey(arr[i])){
+               int count = mp.get(arr[i]) + 1;
+               mp.put(arr[i],count );
+            }else{
+                mp.put(arr[i],1);
+            }
+        }
+        for(Map.Entry<Integer,Integer> x : mp.entrySet()){
+            if(x.getValue()==1){
+                return x.getKey();
+            }
+        }
+        return -1;
+    }
+
+    //The Other Approach is using xor
+    //Time complexity is O(N)
+    static int usingxor(int[] arr){
+        int n = arr.length;
+        int xor=0;
+        for(int i =0;i<n;i++){
+            xor = xor ^ arr[i];
+        }
+        return xor;
+    }
+
+    public static void main(String[] args) {
+        int[] arr = {1,2,2,3,3,4,4};
+        if(OnceAppeared(arr)==-1){
+            System.out.println("No element appeared once");
+        }else{
+            System.out.println(OnceAppeared(arr));
+        }
+        System.out.println(usingxor(arr));
+    }
+}
