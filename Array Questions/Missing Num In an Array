@@ -1,0 +1,62 @@
+FOR SORTED ARRAY:
+
+if array elements start from 1 to N
+
+public class Find_Missing_NumberInArray {
+    static int missingNum(int[] arr){
+        int n = arr.length;
+        int i;
+        for(i =0;i<=n;i++){
+            if(i+1 != arr[i]){
+                break;
+            }
+        }
+        return i+1;
+    }
+
+    public static void main(String[] args) {
+        int[] arr={2,3,4,5,7,6,8,9};
+        System.out.println(missingNum(arr));
+    }
+}
+
+if array elements start from 0 to N
+public class Find_Missing_NumberInArray {
+    static int missingNum(int[] arr){
+        int n = arr.length;
+        int i;
+        for(i =0;i<=n;i++){
+            if(i != arr[i]){
+                break;
+            }
+        }
+        return i;
+    }
+
+    public static void main(String[] args) {
+        int[] arr={2,3,4,5,7,6,8,9};
+        System.out.println(missingNum(arr));
+    }
+}
+
+FOR UNSORTED ARRAY:
+
+import java.util.Arrays;
+public class Find_Missing_NumberInArray {
+    static int missingNum(int[] arr){
+        int n = arr.length;
+        int i;
+        Arrays.sort(arr);
+        for(i =0;i<=n;i++){
+            if(i+1 != arr[i]){
+                break;
+            }
+        }
+        return i+1;
+    }
+
+    public static void main(String[] args) {
+        int[] arr={2,3,4,5,7,6,8,9};
+        System.out.println(missingNum(arr));
+    }
+}
