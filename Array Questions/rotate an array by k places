@@ -1,0 +1,59 @@
+import java.util.ArrayList;
+
+public class rotate_array_by_k_places {
+    //This is when we want to rotate the array to the right
+    static int[] rotateRight(int[] arr,int k){
+        ArrayList<Integer> list = new ArrayList<>();
+        int n =arr.length;
+        if(n<k){
+            System.out.println("Element value is greater than array length");
+        }
+        for(int i=n-k;i<n;i++){
+            list.add(arr[i]);
+        }
+        for(int i =0;i<n-k;i++){
+            list.add(arr[i]);
+        }
+        int[] temp = new int[list.size()];
+        for(int i=0;i<list.size();i++){
+            temp[i]=list.get(i);
+        }
+        return temp;
+    }
+    //This is when we want to rotate the array to the left
+    static int[] rotateLeft(int[] arr,int k){
+        ArrayList<Integer> list = new ArrayList<>();
+        int n =arr.length;
+        if(n<k){
+            System.out.println("Element value is greater than array length");
+        }
+        for(int i=k;i<n;i++){
+            list.add(arr[i]);
+        }
+        for(int i =0;i<k;i++){
+            list.add(arr[i]);
+        }
+        int[] temp = new int[list.size()];
+        for(int i=0;i<list.size();i++){
+            temp[i]=list.get(i);
+        }
+        return temp;
+    }
+
+    static void printarray(int[] arr){
+        for(int i =0;i<arr.length;i++){
+            System.out.print(arr[i]);
+        }
+        System.out.println();
+    }
+
+    public static void main(String[] args) {
+        int[] array= {1,2,3,4,5,6,7};
+        int k=4;
+        printarray(array);
+        int[] arr=rotateRight(array,k);
+        int[] arr1=rotateLeft(array,k);
+        printarray(arr);
+        printarray(arr1);
+    }
+}
