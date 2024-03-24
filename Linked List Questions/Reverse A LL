@@ -1,0 +1,62 @@
+class Node{
+    int data;
+    Node next;
+    public Node(int data){
+        this.data=data;
+        this.next=null;
+    }
+}
+public class Reverse_A_LL {
+    Node head;
+    public Reverse_A_LL(){
+        this.head=null;
+    }
+    public void insertNodeAtBeginning(int data){
+        Node node = new Node(data);
+        if(head==null){
+            head= new Node(data);
+            return;
+        }
+        node.next=head;
+        head=node;
+    }
+    public void display(){
+        Node temp=head;
+        while (temp!=null){
+            System.out.print(temp.data+"->");
+            temp=temp.next;
+        }
+        System.out.print("null");
+        System.out.println();
+    }
+
+
+        /*    ITERATIVE APPROACH    */
+    public void reverseIterative(){
+        Node current =head;
+        Node previous=null;
+        Node temp = null;
+        while(current!=null){
+            temp=current.next;
+            current.next= previous;
+            previous=current;
+            current=temp;
+        }
+        head=previous;
+    }
+    
+
+    public static void main(String[] args) {
+        Reverse_A_LL list = new Reverse_A_LL();
+        list.insertNodeAtBeginning(10);
+        list.insertNodeAtBeginning(9);
+        list.insertNodeAtBeginning(8);
+        list.insertNodeAtBeginning(7);
+        list.insertNodeAtBeginning(6);
+        list.display();
+        list.reverse();
+        list.display();
+
+    }
+
+}
