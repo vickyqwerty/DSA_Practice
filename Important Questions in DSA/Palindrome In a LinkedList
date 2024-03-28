@@ -1,0 +1,86 @@
+import java.util.Scanner;
+public class Palindrome_of_LinkedList {
+    static Node head;
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int n = sc.nextInt();
+        Node list=createList(sc,n);
+        //display(list);
+        if(isPalindrome(list)==true){
+            System.out.println("IT IS A PALINDROME");
+        }else{
+            System.out.println("IT IS NOT A PALINDROME");
+        }
+
+    }
+    static Node reverseLL(Node head){
+        Node prev = null;
+        Node current = head;
+        while(current !=null){
+            Node nextNode = current.next;
+            current.next = prev;
+            prev = current;
+            current = nextNode;
+        }
+        return prev;
+    }
+    static boolean isPalindrome(Node head){
+        if(head==null || head.next==null){
+            return true;
+        }
+        Node slow = head;
+        Node fast = head;
+        while (fast != null && fast.next!= null){
+            slow= slow.next;
+            fast=fast.next.next;
+        }
+        Node secodHead = reverseLL(slow.next);
+        Node p1=head;
+        Node p2= secodHead;
+        while(p2!=null){
+            if(p1.data ==p2.data){
+                p1 = p1.next;
+                p2 = p2.next;
+            }
+            else{
+                return false;
+            }
+        }
+        return true;
+    }
+    public static void insertAtLast(int data){
+        Node node = new Node(data);
+        if(head == null){
+            head = node;
+            return;
+        }
+        Node temp = head;
+        while(temp.next !=null){
+            temp=temp.next;
+        }
+        temp.next=node;
+    }
+    static void display(Node head){
+        Node temp = head;
+        while(temp!=null){
+            System.out.print(temp.data+"->");
+            temp=temp.next;
+        }
+        System.out.print("null");
+        System.out.println();
+    }
+    static Node createList(Scanner sc,int n){
+        int size = n;
+        if(size<=0){
+            return null;
+        }
+        Node head = new Node(sc.nextInt());
+        Node tail = head;
+        for (int i = 1; i < size ; i++) {
+            tail.next=new Node(sc.nextInt());
+            tail=tail.next;
+        }
+        return head;
+    }
+
+}
