@@ -1,0 +1,72 @@
+class Node{
+    int data;
+    Node next;
+    public Node(int data){
+        this.data= data;
+        this.next=null;
+    }
+}
+public class MergeTwoSortedLists {
+    Node head;
+    public void InsertLast(int data){
+        Node node = new Node(data);
+        if(head==null){
+            head = node;
+            return;
+        }
+        Node temp = head;
+        while(temp.next!=null){
+            temp=temp.next;
+        }
+        temp.next=node;
+
+    }
+    public void display(){
+        Node temp = head;
+        while(temp!=null){
+            System.out.print(temp.data+"->");
+            temp=temp.next;
+        }
+        System.out.print("null");
+        System.out.println();
+    }
+    static Node mergeLists(Node HeadA, Node HeadB){
+        Node dummynode =  new Node(0);
+        Node tail = dummynode;
+        while(true){
+            if(HeadA == null){
+                tail.next=HeadB;
+                break;
+            }
+            if(HeadB == null){
+                tail.next=HeadA;
+                break;
+            }
+            if(HeadA.data  <= HeadB.data){
+                tail.next=HeadA;
+                HeadA = HeadA.next;
+            }else {
+                tail.next = HeadB;
+                HeadB = HeadB.next;
+            }
+
+
+            tail = tail.next;
+        }
+        return dummynode.next;
+    }
+
+    public static void main(String[] args) {
+        MergeTwoSortedLists list1 = new MergeTwoSortedLists();
+        MergeTwoSortedLists list2 = new MergeTwoSortedLists();
+        list1.InsertLast(1);
+        list1.InsertLast(2);
+        list1.InsertLast(4);
+        list1.InsertLast(9);
+        list2.InsertLast(3);
+        list2.InsertLast(5);
+        list2.InsertLast(6);
+        list1.head= mergeLists(list1.head,list2.head);
+        list1.display();
+    }
+}
