@@ -1,0 +1,75 @@
+import java.util.Scanner;
+class Node{
+  int data;
+  Node next;
+  public Node(int data){
+    this.data = data;
+    this.next = null;
+  }
+}
+
+public class LoopDetection {
+    static Node head;
+    public void detectLoop(Node head){
+        Node slow = head;
+        Node fast = head.next;
+        while (fast!= null && fast.next!=null){
+
+            if(slow == fast){
+                System.out.println("LOOP DETECTED");
+                return ;
+            }
+            slow = slow.next;
+            fast = fast.next.next;
+        }
+        System.out.println("LOOP NOT DETECTED");
+    }
+
+    public void CreateLoop(int position) {
+        if (position < 0) {
+            return ;
+        }
+
+        Node temp = head;
+        int count = 0;
+        Node loop = null;
+        while (temp != null) {
+            if (count == position) {
+                loop = temp;
+            }
+            if(temp.next == null){
+                temp.next = loop;
+                return ;
+            }
+            temp = temp.next;
+            count++;
+        }
+    }
+    public void insertLast(int data) {
+        Node node =  new Node(data);
+        if(head == null){
+            head = node;
+            return;
+        }
+        Node temp = head;
+        while(temp.next != null){
+            temp= temp.next;
+        }
+        temp.next = node;
+    }
+
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        LoopDetection list = new LoopDetection();
+        System.out.println("Enter the sixe of the list");
+        int n = sc.nextInt();
+        for (int i =0; i<n;i++){
+            int data = sc.nextInt();
+            list.insertLast(data);
+        }
+        System.out.println("Enter position number:");
+        int position  = sc.nextInt();
+        list.CreateLoop(position);
+        list.detectLoop(list.head);
+    }
+}
